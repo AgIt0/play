@@ -51,3 +51,27 @@
 (every? odd? [1 3 5])
 ;;remove
 (remove odd? [1 2 3 4])
+
+;;Exercise 6: Implement this function:
+;;(prefix-of? candidate sequence): Both arguments are sequences. Returns true if the elements in the candidate are the first elements in the sequence:
+(def prefix-of?
+  (fn [prefix sequence]
+    (= prefix (take (count prefix) sequence))))
+
+;;Exercise 7: Implement this function:
+;;(tails sequence): Returns a sequence of successively smaller subsequences of the argument.
+(def tails
+  (fn [sequence]
+    (map drop
+         (range (inc (count sequence)))
+         (repeat (inc (count sequence)) sequence))))
+
+;;Exercise 8: In the first exercise in the chapter, I asked you to complete this function:
+
+;;user=> (def puzzle (fn [list] (list list)))
+;;user=> (puzzle '(1 2 3))
+;; java.lang.ClassCastException: clojure.lang.PersistentList cannot be cast to clojure.lang.IFn (NO_SOURCE_FILE:0)
+;;
+;; after all substitutions it becomes something like:
+;; ((1 2 3) (1 2 3))
+;; and the list (1 2 3) is not a function
